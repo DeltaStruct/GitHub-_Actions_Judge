@@ -1,4 +1,4 @@
-var server = require("ws").server;
+var server = require("ws").Ｓerver;
 var wss = new server({port:5000});
 const exec = require("child_process").exec;
 
