@@ -1,5 +1,5 @@
-var server = require("ws").Ｓerver;
-var wss = new server({port:5000});
+var WebSocket = require("ws");
+var wss = new WebSocket.Server({port:5000});
 const exec = require("child_process").exec;
 
 wss.on("connection", (ws) => {
