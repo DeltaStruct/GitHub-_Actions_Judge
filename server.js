@@ -1,6 +1,6 @@
 var WebSocket = require("ws");
 var wss = new WebSocket.Server({port:5000});
-const exec = require("child_process").exec;
+const exec = require("child_process").spawnSync;
 
 wss.on("connection", (ws) => {
   wss.on("message", (msg) => {
@@ -16,8 +16,11 @@ wss.on("connection", (ws) => {
     };
     ret.lang = lang;
     ret.code = code;
-    if (lang=="C++17"){ 
-      exec("g++")
+    if (lang=="C++17"){
+      var res = exec("g++ -std=gnu++17 -Wall -Wextra -",{
+        input: code,
+        timeout: 10000
+      });
     }
     ws.send("Judge Status: "+"TEST STATUS");
   });
